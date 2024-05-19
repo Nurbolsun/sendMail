@@ -23,7 +23,7 @@ def send_email(request):
         print(
             f"Full Name: {full_name}, Phone Number: {phone_number}, Email: {mail}, Select: {select}, Comment: {comment}")
 
-        subject = "Новая завка с сайта"
+        subject = "Новая заявка с сайта"
         message = f"""
         Контактная информация:
         * ФИО: {full_name}
@@ -41,7 +41,6 @@ def send_email(request):
 
         send_mail(subject, message, from_email, recipient_list)
 
-        return HttpResponse(
-            f"Received data")
+        return HttpResponse("Received data")
     else:
         return HttpResponse("This view accepts only POST requests")
