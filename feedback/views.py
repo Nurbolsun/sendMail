@@ -1,6 +1,10 @@
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
+from rest_framework import generics, viewsets
+
+from feedback.models import Contact
+from feedback.serializers import ContactSerializer
 
 
 @csrf_exempt
@@ -44,3 +48,8 @@ def send_email(request):
         return HttpResponse("Received data")
     else:
         return HttpResponse("This view accepts only POST requests")
+
+
+class ContactList(viewsets.ModelViewSet):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
